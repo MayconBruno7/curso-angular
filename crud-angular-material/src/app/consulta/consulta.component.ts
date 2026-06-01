@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-consulta',
@@ -34,9 +36,12 @@ export class ConsultaComponent {
     'email',
     'cpf',
     'dataNascimento',
-    // 'Ações',
+    'acoes',
   ];
-  constructor(private service: ClienteService) {}
+  constructor(
+    private service: ClienteService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.listaClientes = this.service.pesquisarClientes('');
@@ -44,5 +49,17 @@ export class ConsultaComponent {
 
   pesquisar() {
     this.listaClientes = this.service.pesquisarClientes(this.nomeBusca);
+  }
+
+  preparaEditar(id: string) {
+    this.router.navigate(['cadastro'], { queryParams: { id } });
+  }
+  preparaDeletar(cliente: Cliente) {
+    cliente.deletando = true;
+  }
+
+  deletar(cliente: Cliente) {
+    this.service.deletar(cliente);
+    this.listaClientes = this.service.pesquisarClientes('');
   }
 }
