@@ -9,6 +9,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,7 +21,9 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatButtonModule,
     CommonModule,
+    NgxMaskDirective,
   ],
+  providers: [provideNgxMask()],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.scss',
 })
