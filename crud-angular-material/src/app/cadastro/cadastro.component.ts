@@ -11,6 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { BrasilapiService } from '../brasilapi.service';
+import { Estado, Municipio } from '../brasilapi.models';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,6 +26,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatButtonModule,
     CommonModule,
     NgxMaskDirective,
+    MatSelectModule,
   ],
   providers: [provideNgxMask()],
   templateUrl: './cadastro.component.html',
@@ -32,11 +36,14 @@ export class CadastroComponent {
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
   snackBar: MatSnackBar = inject(MatSnackBar);
+  estados: Estado[] = [];
+  municipios: Municipio[] = [];
 
   constructor(
     private service: ClienteService,
     private route: ActivatedRoute,
     private router: Router,
+    private brasilapiService: BrasilapiService,
   ) {}
 
   ngOnInit() {
@@ -48,8 +55,31 @@ export class CadastroComponent {
         if (clienteEncontrado) {
           this.atualizando = true;
           this.cliente = clienteEncontrado;
+
+          if (this.cliente.sigla) {
+            this.carregarMunicipios({
+              value: this.cliente.sigla,
+            } as MatSelectChange);
+          }
         }
       }
+    });
+    this.carregarUFs();
+  }
+
+  carregarUFs() {
+    this.brasilapiService.listarUFs().subscribe({
+      next: (listaEstados) => (this.estados = listaEstados),
+      error: (error) => console.error('Erro ao carregar estados:', error),
+      // this.estados = estados;
+    });
+  }
+
+  carregarMunicipios(event: MatSelectChange) {
+    const ufSelecionada = event.value;
+    this.brasilapiService.listarMunicipiosPorUF(ufSelecionada).subscribe({
+      next: (municipios) => (this.municipios = municipios),
+      error: (error) => console.error('Erro ao carregar municipios:', error),
     });
   }
 

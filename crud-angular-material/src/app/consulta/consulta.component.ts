@@ -10,7 +10,6 @@ import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { query } from '@angular/animations';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -38,6 +37,8 @@ export class ConsultaComponent {
     'email',
     'cpf',
     'dataNascimento',
+    // 'sigla',
+    // 'municipio',
     'acoes',
   ];
   constructor(
