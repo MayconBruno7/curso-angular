@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'paginas',
     loadChildren: () =>
       import('./template/template-routing-module').then((m) => m.TemplateRoutingModule),
   },
