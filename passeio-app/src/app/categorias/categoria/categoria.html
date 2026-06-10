@@ -14,7 +14,7 @@
         required
         formControlName="nome"
       />
-      <span class="text-red-500 text-sm">Campo Obrigatório</span>
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('nome')">Campo Obrigatório</span>
     </div>
 
     <div class="mb-4">
@@ -27,7 +27,9 @@
         required
         formControlName="descricao"
       ></textarea>
-      <span class="text-red-500 text-sm">Campo Obrigatório</span>
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('descricao')"
+        >Campo Obrigatório</span
+      >
     </div>
 
     <button

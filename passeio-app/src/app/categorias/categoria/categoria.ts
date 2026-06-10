@@ -21,8 +21,13 @@ export class Categoria {
     if (this.camposForm.valid) {
       const categoria = this.camposForm.value;
       console.log('Categoria salva:', categoria);
-    } else {
-      console.log('Formulário inválido');
     }
+    console.log('Formulário inválido');
+    this.camposForm.markAllAsTouched();
+  }
+
+  isCampoInvalido(nomeCampo: string): boolean {
+    const campo = this.camposForm.get(nomeCampo);
+    return (campo?.invalid && campo?.touched && campo?.errors?.['required']) || false;
   }
 }

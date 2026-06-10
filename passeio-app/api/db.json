@@ -1,0 +1,28 @@
+{
+  "categorias": [
+    {
+      "id": "1",
+      "nome": "Restaurantes",
+      "descricao": "Lugares para alimentação"
+    },
+    {
+      "id": "2",
+      "nome": "Museus",
+      "descricao": "Instituições de cultura e ciência"
+    },
+    {
+      "id": "3",
+      "nome": "Praias",
+      "descricao": "Lugares para lazer e descanso"
+    },
+    {
+      "id": "q9SZOkH82VY",
+      "nome": "Teste"
+    },
+    {
+      "nome": "Teste",
+      "id": "9otsOgzgv5g"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
