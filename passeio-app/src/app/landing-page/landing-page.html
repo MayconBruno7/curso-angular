@@ -1,0 +1,30 @@
+<div
+  class="py-10 bg-gradient-to-r from-blue-500 to-blue-700 text-white min-h screen flex flex-col justify-center items-center"
+>
+  <div class="text-center px-6">
+    <h1 class="text-4xl font-bold mb-4">Bem vindo a sua lista de lugares favoritos!</h1>
+    <p class="text-lg mb-6">Explore, organize e compartilhe os lugares que você mais gosta!</p>
+
+    <button
+      (click)="navegar()"
+      *ngIf="isLoggedIn()"
+      class="bg-white text-blue-400 hover:bg-gray-100 font-semibold py-3 px-8 rounded flex space-x-3 items-center justify-center transition duration-300 transform hover:scale-105"
+    >
+      Ola {{ profile?.name || 'Visitante' }}, clique aqui para aproveitar o site!
+    </button>
+
+    <button
+      (click)="logarComGoogle()"
+      *ngIf="!isLoggedIn()"
+      class="bg-white text-blue-700 hover:bg-gray-100 font-semibold py-3 px-8 rounded flex space-x-3 items-center justify-center transition duration-300 transform hover:scale-105"
+    >
+      <img
+        width="50"
+        src="https://foroalfa.org/imagenes/ilustraciones/hq/1204.webp"
+        alt="Google Logo"
+        class="w-6 h-6 mr-2"
+      />
+      Logar com Google
+    </button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "categorias": [
+    {
+      "id": "1",
+      "nome": "Restaurantes",
+      "descricao": "Lugares para alimentação"
+    },
+    {
+      "id": "2",
+      "nome": "Museus",
+      "descricao": "Instituições de cultura e ciência"
+    },
+    {
+      "id": "3",
+      "nome": "Praias",
+      "descricao": "Lugares para lazer e descanso"
+    }
+  ],
+  "lugares": [
+    {
+      "nome": "rtsdr",
+      "categoria": "Restaurantes",
+      "localizacao": "rgdfg",
+      "urlFoto": "sdfgdsf",
+      "avaliacao": "2",
+      "id": "1b2E9xLKdd0"
+    },
+    {
+      "nome": "dfsdfs",
+      "categoria": "Restaurantes",
+      "localizacao": "sdfsad",
+      "urlFoto": "afasdf",
+      "avaliacao": "1",
+      "id": "cb8TgOjMmGY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
