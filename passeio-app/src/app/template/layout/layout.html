@@ -15,7 +15,11 @@
         <a routerLink="/paginas/categorias" class="text-white hover:text-yellow-300">Categorias</a>
       </li>
       <li><a routerLink="/paginas/lugares" class="text-white hover:text-yellow-300">Lugares</a></li>
-      <li><a routerLink="/paginas/" class="text-white hover:text-yellow-300">Sair</a></li>
+      <li>
+        <a routerLink="/paginas/" class="text-white hover:text-yellow-300" (click)="logout()"
+          >Sair</a
+        >
+      </li>
     </ul>
   </nav>
 </header>

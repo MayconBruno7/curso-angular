@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPage } from './landing-page/landing-page';
+import { authGuard } from './auth-guard';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     path: 'paginas',
     loadChildren: () =>
       import('./template/template-routing-module').then((m) => m.TemplateRoutingModule),
+    canActivate: [authGuard],
   },
 ];
 

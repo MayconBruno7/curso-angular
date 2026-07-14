@@ -12,6 +12,7 @@ import { CategoriaService } from '../../categorias/categoria-service';
 })
 export class Galeria implements OnInit {
   lugares: Lugar[] = [];
+  todosLugares: Lugar[] = [];
   categoriasFiltro: Categoria[] = [];
   nomeFiltro: string = '';
   categoriaFiltro: string = '';
@@ -27,6 +28,7 @@ export class Galeria implements OnInit {
     });
 
     this.lugarService.obterTodos().subscribe((lugares) => {
+      this.todosLugares = lugares;
       this.lugares = lugares;
     });
   }
@@ -36,8 +38,18 @@ export class Galeria implements OnInit {
   }
 
   filtrar() {
-    this.lugarService.filtrar(this.nomeFiltro, this.categoriaFiltro).subscribe((lugares) => {
-      this.lugares = lugares;
+    const nomeFiltro = this.nomeFiltro.trim().toLowerCase();
+    const categoriaFiltro = this.categoriaFiltro.trim().toLowerCase();
+    const fonte = this.todosLugares.length > 0 ? this.todosLugares : this.lugares;
+
+    this.lugares = fonte.filter((lugar) => {
+      const atendeNome = !nomeFiltro || (lugar.nome?.toLowerCase() || '').includes(nomeFiltro);
+      const atendeCategoria =
+        !categoriaFiltro ||
+        categoriaFiltro === '-1' ||
+        (lugar.categoria?.toLowerCase() || '') === categoriaFiltro;
+
+      return atendeNome && atendeCategoria;
     });
   }
 }

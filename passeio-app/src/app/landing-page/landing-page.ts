@@ -19,15 +19,26 @@ export class LandingPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggedIn = this.loginService.getLoggedProfile();
+    this.atualizarEstado();
+  }
+
+  private atualizarEstado(): void {
+    const profile = this.loginService.profile();
+    this.profile = (profile as Profile | undefined) ?? undefined;
+    this.loggedIn = this.loginService.isLoggedIn() || !!this.profile;
   }
 
   navegar(): void {
+    if (!this.loggedIn) {
+      return;
+    }
+
     this.router.navigate(['/paginas/galeria']);
   }
 
   logarComGoogle(): void {
     this.loginService.login();
+    this.atualizarEstado();
   }
 
   isLoggedIn(): boolean {
