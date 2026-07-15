@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Lista de produtos</h1>
+
+  <div class="produtos">
+    @for (produto of produtos; track produto) {
+      <div class="card">
+        <img [src]="produto.imagem" [alt]="produto.nome" />
+        <h2>{{ produto.nome }}</h2>
+        <p class="valor">R$ {{ produto.valor | number: '1.2-2' }}</p>
+      </div>
+    }
+  </div>
+</div>
